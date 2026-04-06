@@ -1,0 +1,25 @@
+// =============================================================================
+// HDS Breakpoints - 2025_HDS1.1.2
+// =============================================================================
+
+$breakpoint-s:   360px;   // Mobile
+$breakpoint-m:   768px;   // Tablet
+$breakpoint-lg:  1024px;  // Desktop
+$breakpoint-xlg: 1920px;  // Wide
+
+// Mixin helpers
+@mixin mobile {
+  @media (max-width: #{$breakpoint-m - 1}) { @content; }
+}
+
+@mixin tablet {
+  @media (min-width: #{$breakpoint-m}) and (max-width: #{$breakpoint-lg - 1}) { @content; }
+}
+
+@mixin desktop {
+  @media (min-width: #{$breakpoint-lg}) { @content; }
+}
+
+@mixin wide {
+  @media (min-width: #{$breakpoint-xlg + 1}) { @content; }
+}

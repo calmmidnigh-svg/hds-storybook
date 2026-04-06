@@ -1,0 +1,200 @@
+// =============================================================================
+// HDS Color Tokens - 2025_HDS1.1.2
+// Figma 변수에서 추출한 컬러 토큰
+// =============================================================================
+
+// -----------------------------------------------------------------------------
+// Primitive: Primary
+// -----------------------------------------------------------------------------
+$primary-50: #F3F8FF;
+$primary-100: #E6F0FF;
+$primary-200: #BFCEFF;
+$primary-300: #93AAFF;
+$primary-400: #7092FF;
+$primary-500: #5C7EFF;
+$primary-600: #3E68FF;
+$primary-700: #1E50FF;
+$primary-800: #488FFF;
+$primary-900: #1F78FF;
+$primary-950: #126DFF;
+
+// -----------------------------------------------------------------------------
+// Primitive: Gray (Neutral)
+// -----------------------------------------------------------------------------
+$gray-50: #F9F9F9;
+$gray-100: #F5F5F5;
+$gray-200: #EEEEEE;
+$gray-300: #E0E0E0;
+$gray-400: #CCCCCC;
+$gray-500: #AAAAAA;
+$gray-600: #888888;
+$gray-700: #666666;
+$gray-800: #444444;
+$gray-900: #333333;
+$gray-950: #222222;
+
+$white: #FFFFFF;
+
+// -----------------------------------------------------------------------------
+// Primitive: Success (Green)
+// -----------------------------------------------------------------------------
+$success-50: #F5FAF6;
+$success-100: #E6F4EB;
+$success-200: #C4E4CE;
+$success-300: #9DD1AF;
+$success-400: #72BC8E;
+$success-500: #4EAA70;
+$success-600: #31A552;
+
+// -----------------------------------------------------------------------------
+// Primitive: Warning (Yellow)
+// -----------------------------------------------------------------------------
+$warning-50: #FEFCF4;
+$warning-100: #FEF8E4;
+$warning-200: #FAEEBB;
+$warning-300: #F5E08E;
+$warning-400: #EDD062;
+$warning-500: #E3BF3C;
+$warning-600: #CB9B00;
+
+// -----------------------------------------------------------------------------
+// Primitive: Error (Red)
+// -----------------------------------------------------------------------------
+$error-50: #FEF6F4;
+$error-100: #FDE9E5;
+$error-200: #F9CAC1;
+$error-300: #F4A699;
+$error-400: #EE8070;
+$error-500: #E75E4B;
+$error-600: #EF4523;
+
+// -----------------------------------------------------------------------------
+// Primitive: Extended Palettes
+// -----------------------------------------------------------------------------
+
+// Blue
+$blue-50: #EFF6FF;
+$blue-100: #DBEAFE;
+$blue-200: #BFDBFE;
+$blue-300: #93C5FD;
+$blue-400: #60A5FA;
+$blue-500: #3B82F6;
+$blue-600: #2563EB;
+
+// Green
+$green-50: #F0FDF4;
+$green-100: #DCFCE7;
+$green-200: #BBF7D0;
+$green-300: #86EFAC;
+$green-400: #4ADE80;
+$green-500: #22C55E;
+$green-600: #16A34A;
+
+// Indigo
+$indigo-50: #EEF2FF;
+$indigo-100: #E0E7FF;
+$indigo-200: #C7D2FE;
+$indigo-300: #A5B4FC;
+$indigo-400: #818CF8;
+$indigo-500: #6366F1;
+$indigo-600: #4F46E5;
+
+// Orange
+$orange-50: #FFF7ED;
+$orange-100: #FFEDD5;
+$orange-200: #FED7AA;
+$orange-300: #FDBA74;
+$orange-400: #FB923C;
+$orange-500: #F97316;
+$orange-600: #EA580C;
+
+// Pink
+$pink-50: #FDF2F8;
+$pink-100: #FCE7F3;
+$pink-200: #FBCFE8;
+$pink-300: #F9A8D4;
+$pink-400: #F472B6;
+$pink-500: #EC4899;
+$pink-600: #DB2777;
+
+// Purple
+$purple-50: #FAF5FF;
+$purple-100: #F3E8FF;
+$purple-200: #E9D5FF;
+$purple-300: #D8B4FE;
+$purple-400: #C084FC;
+$purple-500: #A855F7;
+$purple-600: #9333EA;
+
+// Red
+$red-50: #FEF2F2;
+$red-100: #FEE2E2;
+$red-200: #FECACA;
+$red-300: #FCA5A5;
+$red-400: #F87171;
+$red-500: #EF4444;
+$red-600: #DC2626;
+
+// Teal
+$teal-50: #F0FDFA;
+$teal-100: #CCFBF1;
+$teal-200: #99F6E4;
+$teal-300: #5EEAD4;
+$teal-400: #2DD4BF;
+$teal-500: #14B8A6;
+$teal-600: #0D9488;
+
+// Yellow
+$yellow-50: #FEFCE8;
+$yellow-100: #FEF9C3;
+$yellow-200: #FEF08A;
+$yellow-300: #FDE047;
+$yellow-400: #FACC15;
+$yellow-500: #EAB308;
+$yellow-600: #CA8A04;
+
+// -----------------------------------------------------------------------------
+// Semantic Tokens — HDS 1.1.2 기준
+// -----------------------------------------------------------------------------
+
+// CTA / Action
+$color-cta-primary:             $primary-950;   // #126DFF — 기본 CTA
+$color-cta-primary-hover:       $primary-800;   // #488FFF — hover 상태
+
+// Text
+$color-text-body:               $gray-900;      // #333333 — 본문 텍스트
+$color-text-disabled:           $gray-500;      // #AAAAAA — Disabled
+
+// Background
+$color-bg-default:              $white;
+$color-bg-subtle:               $gray-200;      // #EEEEEE
+
+// Status
+$color-error:                   $error-600;     // #EF4523 — 에러
+$color-warning:                 $warning-600;   // #CB9B00 — 경고
+$color-success:                 $success-600;   // #31A552 — 성공
+
+// -----------------------------------------------------------------------------
+// Semantic Button Tokens
+// -----------------------------------------------------------------------------
+
+// Button Background
+$color-btn-primary-bg:          $primary-950;
+$color-btn-primary-bg-hover:    $primary-800;
+$color-btn-secondary-bg:        $white;
+$color-btn-secondary-bg-hover:  $gray-50;
+$color-btn-tertiary-bg:         $gray-100;
+$color-btn-tertiary-bg-hover:   $gray-200;
+$color-btn-danger-bg:           $error-600;
+$color-btn-danger-bg-hover:     $error-500;
+$color-btn-danger-light-bg:     $error-50;
+$color-btn-danger-light-bg-hover: $error-100;
+$color-btn-disabled-bg:         $gray-200;
+
+// Button Text
+$color-btn-primary-text:        $white;
+$color-btn-secondary-text:      $primary-950;
+$color-btn-tertiary-text:       $gray-900;
+$color-btn-danger-text:         $white;
+$color-btn-danger-line-text:    $error-600;
+$color-btn-disabled-text:       $gray-500;

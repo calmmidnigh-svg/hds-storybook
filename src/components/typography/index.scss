@@ -1,0 +1,85 @@
+@use '../../tokens/colors' as *;
+@use '../../tokens/typography' as *;
+
+.typography {
+  font-family: $font-family-base;
+  letter-spacing: $letter-spacing-base;
+  color: $color-text-body;
+  margin: 0;
+
+  // Display
+  &--d1 {
+    font-size: $display-1-size;
+    font-weight: $display-1-weight;
+    line-height: $display-1-line-height;
+  }
+
+  &--d2 {
+    font-size: $display-2-size;
+    font-weight: $display-2-weight;
+    line-height: $display-2-line-height;
+  }
+
+  &--d3 {
+    font-size: $display-3-size;
+    font-weight: $display-3-weight;
+    line-height: $display-3-line-height;
+  }
+
+  // Heading
+  &--h1 {
+    font-size: $heading-1-size;
+    font-weight: $heading-1-weight;
+    line-height: $heading-1-line-height;
+  }
+
+  &--h2 {
+    font-size: $heading-2-size;
+    font-weight: $heading-2-weight;
+    line-height: $heading-2-line-height;
+  }
+
+  &--h3 {
+    font-size: $heading-3-size;
+    font-weight: $heading-3-weight;
+    line-height: $heading-3-line-height;
+  }
+
+  &--h4 {
+    font-size: $heading-4-size;
+    font-weight: $heading-4-weight;
+    line-height: $heading-4-line-height;
+  }
+
+  // Body
+  &--b1 {
+    font-size: $body-1-size;
+    font-weight: $body-1-weight;
+    line-height: $body-1-line-height;
+  }
+
+  &--b2 {
+    font-size: $body-2-size;
+    font-weight: $body-2-weight;
+    line-height: $body-2-line-height;
+  }
+
+  // Detail
+  &--detail1 {
+    font-size: $detail-1-size;
+    font-weight: $detail-1-weight;
+    line-height: $detail-1-line-height;
+  }
+
+  &--detail2 {
+    font-size: $detail-2-size;
+    font-weight: $detail-2-weight;
+    line-height: $detail-2-line-height;
+  }
+
+  &--detail3 {
+    font-size: $detail-3-size;
+    font-weight: $detail-3-weight;
+    line-height: $detail-3-line-height;
+  }
+}

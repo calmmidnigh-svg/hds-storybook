@@ -42,7 +42,7 @@ const Icon = ({
       {hasBgPath && (
         <path d={(icon as { bgPath: string }).bgPath} fill={HDS_COLORS.gray200} />
       )}
-      <path d={icon.path} fillRule="evenodd" />
+      <path d={icon.path} fillRule="evenodd" fill={hasBgPath ? HDS_COLORS.gray500 : undefined} />
       {hasDimPath && (
         <path d={(icon as { dimPath: string }).dimPath} fillRule="evenodd" fillOpacity={0.35} />
       )}

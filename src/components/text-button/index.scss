@@ -1,0 +1,83 @@
+@use '../../tokens/colors' as *;
+@use '../../tokens/spacing' as *;
+@use '../../tokens/typography' as *;
+@use '../../tokens/radius' as *;
+
+// =============================================================================
+// TextButton Component - HDS 1.1.2
+// =============================================================================
+
+.text-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  border-radius: $radius-sm;
+  background-color: transparent;
+  font-family: $font-family-base;
+  letter-spacing: 0;
+  cursor: pointer;
+  text-decoration: none;
+  transition: background-color 0.15s ease, color 0.15s ease, text-decoration 0.15s ease;
+  white-space: nowrap;
+
+  // ---------------------------------------------------------------------------
+  // Size
+  // ---------------------------------------------------------------------------
+  &--medium {
+    height: 28px;
+    padding: $space-4 $space-8;
+    gap: $space-4;
+    font-size: $heading-4-size;
+    font-weight: $heading-4-weight;
+  }
+
+  &--small {
+    height: 24px;
+    padding: $space-4 $space-8;
+    gap: $space-4;
+    font-size: $detail-1-size;
+    font-weight: $body-2-weight;
+  }
+
+  &--xsmall {
+    height: 16px;
+    padding: 0;
+    gap: $space-2;
+    font-size: $detail-2-size;
+    font-weight: $body-2-weight;
+  }
+
+  // ---------------------------------------------------------------------------
+  // Color
+  // ---------------------------------------------------------------------------
+  &--default { color: $gray-950; }
+  &--primary  { color: $color-btn-primary-bg; }
+  &--danger   { color: $color-error; }
+
+  // ---------------------------------------------------------------------------
+  // Hover: background
+  // ---------------------------------------------------------------------------
+  &--hover-background {
+    &:hover:not(:disabled) {
+      background-color: $gray-100;
+    }
+  }
+
+  // ---------------------------------------------------------------------------
+  // Hover: underline
+  // ---------------------------------------------------------------------------
+  &--hover-underline {
+    &:hover:not(:disabled) {
+      text-decoration: underline;
+    }
+  }
+
+  // ---------------------------------------------------------------------------
+  // Disabled
+  // ---------------------------------------------------------------------------
+  &:disabled {
+    color: $color-btn-disabled-text;
+    cursor: not-allowed;
+  }
+}

@@ -6,12 +6,14 @@ const ICON_CATEGORIES = {
   'Navigation': [
     'chevron_left', 'chevron_right', 'chevron_up', 'chevron_down',
     'arrow_left', 'arrow_right', 'arrow_drop_down', 'arrow_drop_up', 'double_arrow',
+    'left_arrow_circled', 'right_arrow_circled',
+    'home', 'sidebar', 'dashboard', 'history',
   ],
   'Action': [
     'search', 'edit', 'trash', 'copy', 'save', 'upload', 'download', 'print',
-    'plus_sign', 'plus_circle', 'remove', 'remove_circle',
-    'close', 'close_small', 'change', 'eraser', 'pin', 'link', 'link_external',
-    'show', 'hide',
+    'plus_sign', 'plus_circle', 'plus_square', 'remove', 'remove_circle',
+    'close', 'close_small', 'close_box', 'change', 'eraser', 'pin', 'link', 'link_external',
+    'show', 'hide', 'campaign', 'manual',
   ],
   'Status': [
     'checked', 'checked_circle', 'cancled_circle', 'no_access_circle',
@@ -23,10 +25,40 @@ const ICON_CATEGORIES = {
     'radio_button_checked', 'radio_button_unchecked',
     'menu', 'more_vert', 'meatball', 'filter_list', 'tune_filter',
     'toggle', 'settings', 'notifications', 'fullscreen',
+    'pause_circle',
+  ],
+  'Calendar': [
+    'calendar_month', 'calendar_event', 'calendar_vacation_request', 'calendar_busy',
+    'calendar_add', 'calendar_visit', 'calendar_vacation', 'calendar_clock',
+    'schedule_live', 'calendar_free_cancellation', 'calendar_search',
+  ],
+  'Organization': [
+    'corporate_fare', 'work', 'work_history', 'id_card',
+  ],
+  'People': [
+    'person', 'supervisor_account', 'supervised_user_circle',
+    'manage_accounts', 'face', 'team',
+  ],
+  'File & Folder': [
+    'file', 'file_add', 'file_search', 'file_save', 'file_upload',
+    'copy_data', 'folder', 'create_new_folder',
+    'drive_file_move', 'drive_folder_upload', 'image', 'image_upload',
+  ],
+  'Data & Reports': [
+    'table', 'chart', 'grahp', 'data_save',
+  ],
+  'Communication': [
+    'mail', 'alternate_email', 'send', 'forum', 'coment',
+  ],
+  'Security': [
+    'lock', 'unlock', 'lock_wait', 'mypage',
+  ],
+  'Payment': [
+    'pay', 'pay_add', 'pay_success',
   ],
   'System': [
     'code', 'logout', 'pause', 'replay_left', 'replay_right',
-    'rotate_right', 'swap_vert_default',
+    'rotate_right', 'swap_vert_default', 'swap_vert_up',
   ],
 } as const;
 

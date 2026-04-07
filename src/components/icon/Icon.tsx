@@ -35,7 +35,7 @@ const Icon = ({
       className={className}
       style={style}
     >
-      <path d={icon.path} />
+      <path d={icon.path} fillRule="evenodd" />
     </svg>
   );
 };

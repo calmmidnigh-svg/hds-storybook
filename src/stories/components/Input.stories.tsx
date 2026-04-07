@@ -10,7 +10,7 @@ const meta: Meta<typeof Input> = {
   argTypes: {
     type: {
       control: 'radio',
-      options: ['text', 'number'],
+      options: ['text', 'number', 'date'],
     },
     isClearable: { control: 'boolean' },
     disabled: { control: 'boolean' },
@@ -141,6 +141,89 @@ export const Types: Story = {
             value={numberValue}
             placeholder="숫자 입력"
             onValueChange={(raw) => setNumberValue(raw)}
+          />
+        </div>
+      </div>
+    );
+  },
+};
+
+// ---------------------------------------------------------------------------
+// Date
+// ---------------------------------------------------------------------------
+export const DateInput: Story = {
+  render: () => {
+    const [value, setValue] = useState('');
+
+    return (
+      <div style={{ display: 'flex', flexDirection: 'column', gap: '16px', width: '240px' }}>
+        <div>
+          <p style={{ marginBottom: '6px', fontSize: '12px', color: '#888' }}>default</p>
+          <Input type="date" value={value} onValueChange={(raw) => setValue(raw)} />
+        </div>
+        <div>
+          <p style={{ marginBottom: '6px', fontSize: '12px', color: '#888' }}>filled</p>
+          <Input type="date" value="2026-01-02" onValueChange={() => {}} />
+        </div>
+        <div>
+          <p style={{ marginBottom: '6px', fontSize: '12px', color: '#888' }}>error</p>
+          <Input type="date" value="1880-01-12" error onValueChange={() => {}} />
+        </div>
+        <div>
+          <p style={{ marginBottom: '6px', fontSize: '12px', color: '#888' }}>disabled</p>
+          <Input type="date" value="" disabled onValueChange={() => {}} />
+        </div>
+      </div>
+    );
+  },
+};
+
+// ---------------------------------------------------------------------------
+// Date Range
+// ---------------------------------------------------------------------------
+export const DateRangeInput: Story = {
+  render: () => {
+    const [start, setStart] = useState('');
+    const [end, setEnd] = useState('');
+
+    return (
+      <div style={{ display: 'flex', flexDirection: 'column', gap: '16px', width: '240px' }}>
+        <div>
+          <p style={{ marginBottom: '6px', fontSize: '12px', color: '#888' }}>default</p>
+          <Input.DateRange
+            startValue={start}
+            endValue={end}
+            onStartValueChange={(raw) => setStart(raw)}
+            onEndValueChange={(raw) => setEnd(raw)}
+          />
+        </div>
+        <div>
+          <p style={{ marginBottom: '6px', fontSize: '12px', color: '#888' }}>filled</p>
+          <Input.DateRange
+            startValue="2026-01-02"
+            endValue="2026-08-25"
+            onStartValueChange={() => {}}
+            onEndValueChange={() => {}}
+          />
+        </div>
+        <div>
+          <p style={{ marginBottom: '6px', fontSize: '12px', color: '#888' }}>error</p>
+          <Input.DateRange
+            startValue="1880-01-02"
+            endValue="2026-08-25"
+            error
+            onStartValueChange={() => {}}
+            onEndValueChange={() => {}}
+          />
+        </div>
+        <div>
+          <p style={{ marginBottom: '6px', fontSize: '12px', color: '#888' }}>disabled</p>
+          <Input.DateRange
+            startValue=""
+            endValue=""
+            disabled
+            onStartValueChange={() => {}}
+            onEndValueChange={() => {}}
           />
         </div>
       </div>

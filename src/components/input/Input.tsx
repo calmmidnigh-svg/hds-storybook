@@ -1,5 +1,10 @@
 import { type ChangeEvent, type InputHTMLAttributes, useRef } from 'react';
+import InputDateRange from './InputDateRange';
 import type { InputTypeType } from './types';
+
+const DATE_PLACEHOLDER: Partial<Record<InputTypeType, string>> = {
+  date: 'YYYY-MM-DD',
+};
 
 type InputPropsType = Omit<InputHTMLAttributes<HTMLInputElement>, 'onChange' | 'type'> & {
   value: string;
@@ -37,6 +42,7 @@ const Input = ({
   ...rest
 }: InputPropsType) => {
   const inputRef = useRef<HTMLInputElement>(null);
+  const resolvedPlaceholder = placeholder ?? DATE_PLACEHOLDER[type] ?? undefined;
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     onValueChange?.(e.target.value, e.target.value);
@@ -64,7 +70,7 @@ const Input = ({
         type={type}
         value={value}
         onChange={handleChange}
-        placeholder={placeholder}
+        placeholder={resolvedPlaceholder}
         disabled={disabled}
         name={name}
         id={id}
@@ -85,4 +91,6 @@ const Input = ({
   );
 };
 
-export default Input;
+export default Object.assign(Input, {
+  DateRange: InputDateRange,
+});

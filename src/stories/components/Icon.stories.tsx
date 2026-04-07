@@ -74,7 +74,10 @@ const ICON_CATEGORIES = {
     'format_h1', 'format_h2', 'format_h3',
     'align_horizontal_left', 'align_horizontal_center', 'align_horizontal_right',
     'format_align_justify', 'format_list_bulleted', 'format_list_numbered',
-    'format_color_text',
+    'format_color_text', 'format_indent_nomal', 'format_indent_decrease',
+    'format_indent_increase', 'format_quote', 'text', 'match_case',
+    'lower_case', 'upper_case', 'titlecase', 'border_clear',
+    'format_ink_highlighter', 'ink_highlighter', 'colors', 'colorize',
   ],
   'File Type': [
     'pdf', 'jpg', 'png', 'ppt',

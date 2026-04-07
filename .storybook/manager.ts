@@ -11,7 +11,7 @@ const hdsTheme = create({
   // 브랜드 타이틀
   brandTitle: '',
   brandUrl: '/',
-  brandImage: 'public//HDSlogo.svg', // 나중에 로고 이미지 URL이 생기면 여기에 넣으세요
+  brandImage: 'public/HDSlogo.svg', // 나중에 로고 이미지 URL이 생기면 여기에 넣으세요
 
   // 컬러 팔레트
   colorPrimary: '#333333',

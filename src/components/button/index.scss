@@ -1,0 +1,234 @@
+@use '../../tokens/colors' as *;
+@use '../../tokens/spacing' as *;
+@use '../../tokens/typography' as *;
+@use '../../tokens/radius' as *;
+
+// =============================================================================
+// Button Component - HDS 1.1.2
+// =============================================================================
+
+.button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  border: 1px solid transparent;
+  border-radius: $radius-md;
+  font-family: $font-family-base;
+  font-weight: $heading-4-weight;
+  letter-spacing: 0;
+  cursor: pointer;
+  transition: background-color 0.15s ease, border-color 0.15s ease, color 0.15s ease;
+  white-space: nowrap;
+  text-decoration: none;
+
+  // ---------------------------------------------------------------------------
+  // Size
+  // ---------------------------------------------------------------------------
+  &--small {
+    height: 32px;
+    padding: 0 $space-12;
+    font-size: $body-2-size;
+  }
+
+  &--medium {
+    height: 40px;
+    padding: 0 $space-16;
+    font-size: $body-1-size;
+  }
+
+  &--full-width {
+    width: 100%;
+  }
+
+  // ---------------------------------------------------------------------------
+  // Color × Variant: Primary (Solid)
+  // ---------------------------------------------------------------------------
+  &--primary#{&}--solid {
+    background-color: $color-btn-primary-bg;
+    border-color: $color-btn-primary-bg;
+    color: $color-btn-primary-text;
+
+    &:hover:not(:disabled) {
+      background-color: $color-btn-primary-bg-hover;
+      border-color: $color-btn-primary-bg-hover;
+    }
+  }
+
+  &--primary#{&}--outline {
+    background-color: $white;
+    border-color: $color-btn-primary-bg;
+    color: $color-btn-primary-bg;
+
+    &:hover:not(:disabled) {
+      background-color: $gray-50;
+    }
+  }
+
+  // ---------------------------------------------------------------------------
+  // Color × Variant: Secondary
+  // ---------------------------------------------------------------------------
+  &--secondary#{&}--solid {
+    background-color: $color-btn-secondary-bg;
+    border-color: $gray-300;
+    color: $color-text-body;
+
+    &:hover:not(:disabled) {
+      background-color: $color-btn-secondary-bg-hover;
+    }
+  }
+
+  &--secondary#{&}--outline {
+    background-color: $white;
+    border-color: $gray-300;
+    color: $color-text-body;
+
+    &:hover:not(:disabled) {
+      background-color: $gray-50;
+    }
+  }
+
+  // ---------------------------------------------------------------------------
+  // Color × Variant: Tertiary
+  // ---------------------------------------------------------------------------
+  &--tertiary#{&}--solid {
+    background-color: $color-btn-tertiary-bg;
+    border-color: $color-btn-tertiary-bg;
+    color: $color-btn-tertiary-text;
+
+    &:hover:not(:disabled) {
+      background-color: $color-btn-tertiary-bg-hover;
+      border-color: $color-btn-tertiary-bg-hover;
+    }
+  }
+
+  &--tertiary#{&}--outline {
+    background-color: $white;
+    border-color: $gray-200;
+    color: $gray-700;
+
+    &:hover:not(:disabled) {
+      background-color: $gray-50;
+    }
+  }
+
+  // ---------------------------------------------------------------------------
+  // Color × Variant: Danger
+  // ---------------------------------------------------------------------------
+  &--danger#{&}--solid {
+    background-color: $color-btn-danger-bg;
+    border-color: $color-btn-danger-bg;
+    color: $color-btn-danger-text;
+
+    &:hover:not(:disabled) {
+      background-color: $color-btn-danger-bg-hover;
+      border-color: $color-btn-danger-bg-hover;
+    }
+  }
+
+  &--danger#{&}--outline {
+    background-color: $white;
+    border-color: $color-error;
+    color: $color-error;
+
+    &:hover:not(:disabled) {
+      background-color: $error-50;
+    }
+  }
+
+  // ---------------------------------------------------------------------------
+  // Color × Variant: Danger Light
+  // ---------------------------------------------------------------------------
+  &--danger-light#{&}--solid {
+    background-color: $color-btn-danger-light-bg;
+    border-color: $color-btn-danger-light-bg;
+    color: $color-btn-danger-line-text;
+
+    &:hover:not(:disabled) {
+      background-color: $color-btn-danger-light-bg-hover;
+      border-color: $color-btn-danger-light-bg-hover;
+    }
+  }
+
+  &--danger-light#{&}--outline {
+    background-color: $white;
+    border-color: $error-200;
+    color: $color-error;
+
+    &:hover:not(:disabled) {
+      background-color: $error-50;
+    }
+  }
+
+  // ---------------------------------------------------------------------------
+  // Color × Variant: Light
+  // ---------------------------------------------------------------------------
+  &--light#{&}--solid {
+    background-color: $white;
+    border-color: $gray-300;
+    color: $gray-900;
+
+    &:hover:not(:disabled) {
+      background-color: $gray-50;
+    }
+  }
+
+  &--light#{&}--outline {
+    background-color: transparent;
+    border-color: $gray-300;
+    color: $gray-900;
+
+    &:hover:not(:disabled) {
+      background-color: $gray-50;
+    }
+  }
+
+  // ---------------------------------------------------------------------------
+  // Disabled
+  // ---------------------------------------------------------------------------
+  &:disabled {
+    background-color: $color-btn-disabled-bg;
+    border-color: $color-btn-disabled-bg;
+    color: $color-btn-disabled-text;
+    cursor: not-allowed;
+  }
+
+  // ---------------------------------------------------------------------------
+  // Icon
+  // ---------------------------------------------------------------------------
+  &__icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 16px;
+    height: 16px;
+    flex-shrink: 0;
+  }
+}
+
+// =============================================================================
+// Button Group
+// =============================================================================
+
+.button-group {
+  display: inline-flex;
+
+  &--column {
+    flex-direction: column;
+  }
+
+  &--row {
+    flex-direction: row;
+  }
+
+  &--start  { justify-content: flex-start; }
+  &--center { justify-content: center; }
+  &--end    { justify-content: flex-end; }
+  &--between { justify-content: space-between; }
+
+  &--gap-xs { gap: $space-4; }
+  &--gap-sm { gap: $space-8; }
+  &--gap-md { gap: $space-12; }
+  &--gap-lg { gap: $space-16; }
+  &--gap-xl { gap: $space-24; }
+}

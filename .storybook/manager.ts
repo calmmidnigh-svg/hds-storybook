@@ -9,9 +9,9 @@ const hdsTheme = create({
   fontBase: '"Pretendard", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif',
   
   // 브랜드 타이틀
-  brandTitle: 'HDS System',
+  brandTitle: '',
   brandUrl: '/',
-  brandImage: '', // 나중에 로고 이미지 URL이 생기면 여기에 넣으세요
+  brandImage: '/HDSlogo.svg', // 나중에 로고 이미지 URL이 생기면 여기에 넣으세요
 
   // 컬러 팔레트
   colorPrimary: '#333333',

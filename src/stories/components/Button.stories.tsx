@@ -5,6 +5,7 @@ import '../../components/button/index.scss';
 const meta: Meta<typeof Button> = {
   title: 'Components/Button',
   component: Button,
+  tags: ['autodocs'],
   argTypes: {
     size: {
       control: 'radio',
@@ -37,7 +38,9 @@ type Story = StoryObj<typeof Button>;
 // 기본
 // ---------------------------------------------------------------------------
 export const Default: Story = {
-  args: { children: '버튼' },
+  args: {
+    children: '버튼',
+  },
 };
 
 // ---------------------------------------------------------------------------

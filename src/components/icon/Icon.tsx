@@ -19,6 +19,8 @@ const Icon = ({
 }: IconPropsType) => {
   const icon = iconMap[name];
 
+  if (!icon) return null;
+
   return (
     <svg
       width={size}

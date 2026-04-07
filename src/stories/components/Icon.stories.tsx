@@ -67,6 +67,17 @@ const ICON_CATEGORIES = {
     'code', 'logout', 'pause', 'replay_left', 'replay_right',
     'rotate_right', 'swap_vert_default', 'swap_vert_up', 'swap_vert_down',
     'all_information', 'aducation', 'sales', 'sign', 'medal',
+    'refresh',
+  ],
+  'Text Editor': [
+    'format_bold', 'format_italic', 'format_underlined', 'strikethrough',
+    'format_h1', 'format_h2', 'format_h3',
+    'align_horizontal_left', 'align_horizontal_center', 'align_horizontal_right',
+    'format_align_justify', 'format_list_bulleted', 'format_list_numbered',
+    'format_color_text',
+  ],
+  'File Type': [
+    'pdf', 'jpg', 'png', 'ppt',
   ],
 } as const;
 

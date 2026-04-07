@@ -39,6 +39,7 @@ const ICON_CATEGORIES = {
   'People': [
     'person', 'supervisor_account', 'supervised_user_circle',
     'manage_accounts', 'face', 'team',
+    'settings_account_box', 'id_card_new', 'customer_service_agent',
   ],
   'Event & Leave': [
     'gift', 'bag', 'arrive', 'departure',
@@ -54,16 +55,18 @@ const ICON_CATEGORIES = {
   ],
   'Communication': [
     'mail', 'alternate_email', 'send', 'forum', 'coment', 'headphones',
+    'stream_app', 'stream_apps',
   ],
   'Security': [
     'lock', 'unlock', 'lock_wait', 'mypage',
   ],
   'Payment': [
-    'pay', 'pay_add', 'pay_success',
+    'pay', 'pay_add', 'pay_success', 'universal_currency_alt', 'paid',
   ],
   'System': [
     'code', 'logout', 'pause', 'replay_left', 'replay_right',
     'rotate_right', 'swap_vert_default', 'swap_vert_up', 'swap_vert_down',
+    'all_information', 'aducation', 'sales', 'sign', 'medal',
   ],
 } as const;
 

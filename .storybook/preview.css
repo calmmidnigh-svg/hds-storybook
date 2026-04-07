@@ -1,0 +1,11 @@
+@import 'pretendard/dist/web/variable/pretendardvariable.css';
+
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Pretendard Variable', 'Pretendard', -apple-system, BlinkMacSystemFont, sans-serif;
+  letter-spacing: 0;
+  margin: 0;
+}

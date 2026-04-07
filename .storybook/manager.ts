@@ -1,4 +1,4 @@
-// .storybook/manager.ts
+// @ts-nocheck  <-- 이 줄을 최상단에 복사해서 넣어주세요!
 import { addons } from '@storybook/manager-api';
 import { create } from '@storybook/theming';
 

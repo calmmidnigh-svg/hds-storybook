@@ -29,6 +29,6 @@
     ".next/types/**/*.ts",
     ".next/dev/types/**/*.ts",
     "**/*.mts"
-  ],
+, ".storybook/main.ts", ".storybook/manager.ts", ".storybook/preview.ts"  ],
   "exclude": ["node_modules"]
 }

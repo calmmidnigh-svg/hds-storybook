@@ -8,20 +8,9 @@ type ButtonIconPropsType = {
 
 const ButtonIcon = ({ icon, svg: SvgIcon, autoColor = false }: ButtonIconPropsType) => {
   const classNames = ['button__icon', autoColor && 'button__icon--auto-color'].filter(Boolean).join(' ');
+  const content = SvgIcon ? <SvgIcon width={16} height={16} /> : (icon ?? null);
 
-  if (SvgIcon) {
-    return (
-      <span className={classNames}>
-        <SvgIcon width={16} height={16} />
-      </span>
-    );
-  }
-
-  if (icon) {
-    return <span className={classNames}>{icon}</span>;
-  }
-
-  return null;
+  return content ? <span className={classNames}>{content}</span> : null;
 };
 
 export default ButtonIcon;

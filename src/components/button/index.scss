@@ -15,7 +15,6 @@
   border: 1px solid transparent;
   border-radius: $radius-md;
   font-family: $font-family-base;
-  font-weight: $heading-4-weight;
   letter-spacing: 0;
   cursor: pointer;
   transition: background-color 0.15s ease, border-color 0.15s ease, color 0.15s ease;
@@ -28,13 +27,15 @@
   &--small {
     height: 32px;
     padding: 0 $space-12;
-    font-size: $body-2-size;
+    font-size: $detail-1-size;
+    font-weight: $body-2-weight;
   }
 
   &--medium {
     height: 40px;
     padding: 0 $space-16;
-    font-size: $body-1-size;
+    font-size: $body-2-size;
+    font-weight: $heading-4-weight;
   }
 
   &--full-width {

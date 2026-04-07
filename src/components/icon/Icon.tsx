@@ -1,4 +1,5 @@
 import type { CSSProperties } from 'react';
+import { HDS_COLORS } from '@/tokens/colors';
 import { iconMap } from './icons';
 import type { IconNameType } from './icons';
 
@@ -21,6 +22,7 @@ const Icon = ({
 
   if (!icon) return null;
 
+  const hasBgPath = 'bgPath' in icon && Boolean(icon.bgPath);
   const hasDimPath = 'dimPath' in icon && Boolean(icon.dimPath);
 
   return (
@@ -37,6 +39,9 @@ const Icon = ({
       className={className}
       style={style}
     >
+      {hasBgPath && (
+        <path d={(icon as { bgPath: string }).bgPath} fill={HDS_COLORS.gray200} />
+      )}
       <path d={icon.path} fillRule="evenodd" />
       {hasDimPath && (
         <path d={(icon as { dimPath: string }).dimPath} fillRule="evenodd" fillOpacity={0.35} />

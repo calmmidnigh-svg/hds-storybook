@@ -21,6 +21,8 @@ const Icon = ({
 
   if (!icon) return null;
 
+  const hasDimPath = 'dimPath' in icon && Boolean(icon.dimPath);
+
   return (
     <svg
       width={size}
@@ -36,6 +38,9 @@ const Icon = ({
       style={style}
     >
       <path d={icon.path} fillRule="evenodd" />
+      {hasDimPath && (
+        <path d={(icon as { dimPath: string }).dimPath} fillRule="evenodd" fillOpacity={0.35} />
+      )}
     </svg>
   );
 };

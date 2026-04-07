@@ -6,12 +6,12 @@ const ICON_CATEGORIES = {
   'Navigation': [
     'chevron_left', 'chevron_right', 'chevron_up', 'chevron_down',
     'arrow_left', 'arrow_right', 'arrow_drop_down', 'arrow_drop_up', 'double_arrow',
-    'left_arrow_circled', 'right_arrow_circled',
+    'left_arrow_circled', 'right_arrow_circled', 'up_arrow_circled', 'down_arrow_circled',
     'home', 'sidebar', 'dashboard', 'history',
   ],
   'Action': [
     'search', 'edit', 'trash', 'copy', 'save', 'upload', 'download', 'print',
-    'plus_sign', 'plus_circle', 'plus_square', 'remove', 'remove_circle',
+    'plus_sign', 'plus_circle', 'plus_square', 'remove', 'remove_circle', 'remove_square',
     'close', 'close_small', 'close_box', 'change', 'eraser', 'pin', 'link', 'link_external',
     'show', 'hide', 'campaign', 'manual',
   ],
@@ -34,13 +34,18 @@ const ICON_CATEGORIES = {
   ],
   'Organization': [
     'corporate_fare', 'work', 'work_history', 'id_card',
+    'business_center', 'business_center_add', 'account_tree', 'identity_platform',
   ],
   'People': [
     'person', 'supervisor_account', 'supervised_user_circle',
     'manage_accounts', 'face', 'team',
   ],
+  'Event & Leave': [
+    'gift', 'bag', 'arrive', 'departure',
+    'on_vacation', 'parental_leave', 'chiled_care', 'birthday', 'hospital',
+  ],
   'File & Folder': [
-    'file', 'file_add', 'file_search', 'file_save', 'file_upload',
+    'file', 'file_add', 'file_search', 'file_save', 'file_edit', 'file_setting', 'file_upload',
     'copy_data', 'folder', 'create_new_folder',
     'drive_file_move', 'drive_folder_upload', 'image', 'image_upload',
   ],
@@ -48,7 +53,7 @@ const ICON_CATEGORIES = {
     'table', 'chart', 'grahp', 'data_save',
   ],
   'Communication': [
-    'mail', 'alternate_email', 'send', 'forum', 'coment',
+    'mail', 'alternate_email', 'send', 'forum', 'coment', 'headphones',
   ],
   'Security': [
     'lock', 'unlock', 'lock_wait', 'mypage',
@@ -58,7 +63,7 @@ const ICON_CATEGORIES = {
   ],
   'System': [
     'code', 'logout', 'pause', 'replay_left', 'replay_right',
-    'rotate_right', 'swap_vert_default', 'swap_vert_up',
+    'rotate_right', 'swap_vert_default', 'swap_vert_up', 'swap_vert_down',
   ],
 } as const;
 

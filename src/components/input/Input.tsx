@@ -43,6 +43,7 @@ const Input = ({
 }: InputPropsType) => {
   const inputRef = useRef<HTMLInputElement>(null);
   const resolvedPlaceholder = placeholder ?? DATE_PLACEHOLDER[type] ?? undefined;
+  const htmlType = type === 'date' ? 'text' : type;
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     onValueChange?.(e.target.value, e.target.value);
@@ -67,7 +68,7 @@ const Input = ({
       <input
         ref={inputRef}
         className="input__field"
-        type={type}
+        type={htmlType}
         value={value}
         onChange={handleChange}
         placeholder={resolvedPlaceholder}

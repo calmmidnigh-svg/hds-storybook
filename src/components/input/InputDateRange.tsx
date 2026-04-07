@@ -12,17 +12,17 @@ type InputDateRangePropsType = {
   className?: string;
 };
 
-const SeparatorIcon = () => (
+const RangeArrowIcon = () => (
   <svg
+    className="input__range-separator"
     width="12"
-    height="8"
-    viewBox="0 0 12 8"
+    height="7"
+    viewBox="0 0 12 7"
     fill="none"
     aria-hidden="true"
-    className="input__range-separator"
   >
     <path
-      d="M1 4H11M8 1L11 4L8 7"
+      d="M1 3.5H11M8.5 1L11 3.5L8.5 6"
       stroke="currentColor"
       strokeWidth="1.5"
       strokeLinecap="round"
@@ -60,23 +60,25 @@ const InputDateRange = ({
 
   return (
     <div className={wrapperClassNames}>
-      <input
-        className="input__field"
-        type="text"
-        value={startValue}
-        onChange={handleStartChange}
-        placeholder={startPlaceholder}
-        disabled={disabled}
-      />
-      <SeparatorIcon />
-      <input
-        className="input__field"
-        type="text"
-        value={endValue}
-        onChange={handleEndChange}
-        placeholder={endPlaceholder}
-        disabled={disabled}
-      />
+      <div className="input__date-range-inner">
+        <input
+          className="input__field input__field--date-slot"
+          type="text"
+          value={startValue}
+          onChange={handleStartChange}
+          placeholder={startPlaceholder}
+          disabled={disabled}
+        />
+        <RangeArrowIcon />
+        <input
+          className="input__field input__field--date-slot"
+          type="text"
+          value={endValue}
+          onChange={handleEndChange}
+          placeholder={endPlaceholder}
+          disabled={disabled}
+        />
+      </div>
     </div>
   );
 };

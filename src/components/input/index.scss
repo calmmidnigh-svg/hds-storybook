@@ -78,18 +78,25 @@
   // Date Range
   // ---------------------------------------------------------------------------
   &--date-range {
-    gap: 0;
+    padding: $space-12 $space-16;
 
-    .input__field {
-      flex: 1;
-      min-width: 0;
-      text-align: center;
+    .input__date-range-inner {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+      gap: 0;
     }
   }
 
+  &__field--date-slot {
+    flex: 1;
+    min-width: 0;
+    text-align: center;
+  }
+
   &__range-separator {
-    flex-shrink: 0;
-    width: 24px;
+    flex: 0 0 24px;
     height: 24px;
     display: inline-flex;
     align-items: center;

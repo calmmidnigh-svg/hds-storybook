@@ -1,4 +1,5 @@
 import type { ChangeEvent } from 'react';
+import Icon from '../icon';
 
 type InputDateRangePropsType = {
   startValue: string;
@@ -11,25 +12,6 @@ type InputDateRangePropsType = {
   error?: boolean;
   className?: string;
 };
-
-const RangeArrowIcon = () => (
-  <svg
-    className="input__range-separator"
-    width="12"
-    height="7"
-    viewBox="0 0 12 7"
-    fill="none"
-    aria-hidden="true"
-  >
-    <path
-      d="M1 3.5H11M8.5 1L11 3.5L8.5 6"
-      stroke="currentColor"
-      strokeWidth="1.5"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-    />
-  </svg>
-);
 
 const InputDateRange = ({
   startValue,
@@ -69,7 +51,7 @@ const InputDateRange = ({
           placeholder={startPlaceholder}
           disabled={disabled}
         />
-        <RangeArrowIcon />
+        <Icon name="chevron_right" size={12} className="input__range-separator" />
         <input
           className="input__field input__field--date-slot"
           type="text"

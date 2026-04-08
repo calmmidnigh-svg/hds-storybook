@@ -1,0 +1,205 @@
+@use '../../tokens/colors' as *;
+@use '../../tokens/spacing' as *;
+@use '../../tokens/typography' as *;
+@use '../../tokens/radius' as *;
+
+// =============================================================================
+// DropDown Component - HDS 1.1.2
+// Figma: drop_down_field (size: medium | small, state: default | error | disabled | open)
+// =============================================================================
+
+.drop-down {
+  position: relative;
+  display: inline-block;
+  width: 100%;
+  box-sizing: border-box;
+
+  // ---------------------------------------------------------------------------
+  // Field (트리거 버튼)
+  // ---------------------------------------------------------------------------
+  &__field {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    border: 1px solid $gray-400;
+    border-radius: $radius-md;
+    background-color: $white;
+    cursor: pointer;
+    box-sizing: border-box;
+    transition: border-color 0.15s ease;
+    text-align: left;
+
+    &:hover:not(:disabled) {
+      border-color: $gray-600;
+    }
+  }
+
+  // ---------------------------------------------------------------------------
+  // Text (선택값 / 플레이스홀더)
+  // ---------------------------------------------------------------------------
+  &__text {
+    flex: 1;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    color: $gray-950;
+    letter-spacing: 0;
+
+    &--placeholder {
+      color: $gray-400;
+    }
+  }
+
+  // ---------------------------------------------------------------------------
+  // Icon (화살표)
+  // ---------------------------------------------------------------------------
+  &__icon {
+    display: inline-flex;
+    align-items: center;
+    flex-shrink: 0;
+    color: $gray-600;
+  }
+
+  // ---------------------------------------------------------------------------
+  // List (목록 컨테이너)
+  // ---------------------------------------------------------------------------
+  &__list {
+    position: absolute;
+    top: calc(100% + 4px);
+    left: 0;
+    width: 100%;
+    max-height: 200px;
+    overflow-y: auto;
+    border: 1px solid $gray-300;
+    border-radius: $radius-md;
+    background-color: $white;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, .08);
+    z-index: 100;
+    list-style: none;
+    margin: 0;
+    padding: $space-4 0;
+    box-sizing: border-box;
+  }
+
+  // ---------------------------------------------------------------------------
+  // Item (개별 옵션)
+  // ---------------------------------------------------------------------------
+  &__item {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    color: $gray-950;
+    letter-spacing: 0;
+    transition: background-color 0.1s ease;
+
+    &:hover:not(.drop-down__item--disabled) {
+      background-color: $gray-50;
+    }
+
+    &--selected {
+      background-color: $primary-50;
+      color: $primary-950;
+      font-weight: 600;
+    }
+
+    &--disabled {
+      color: $gray-400;
+      cursor: not-allowed;
+    }
+  }
+
+  // ---------------------------------------------------------------------------
+  // Size: medium (default)
+  // ---------------------------------------------------------------------------
+  &--medium {
+    .drop-down__field {
+      height: 44px;
+      padding: $space-12 $space-16;
+      gap: $space-8;
+    }
+
+    .drop-down__text {
+      font-size: $body-2-size;
+      font-weight: $body-2-weight;
+      line-height: $body-2-line-height;
+      font-family: $font-family-base;
+    }
+
+    .drop-down__item {
+      height: 36px;
+      padding: 0 $space-16;
+      font-size: $body-2-size;
+      font-weight: $body-2-weight;
+      font-family: $font-family-base;
+    }
+  }
+
+  // ---------------------------------------------------------------------------
+  // Size: small
+  // ---------------------------------------------------------------------------
+  &--small {
+    .drop-down__field {
+      height: 36px;
+      padding: $space-8 $space-12;
+      gap: $space-4;
+      border-radius: $radius-sm;
+    }
+
+    .drop-down__text {
+      font-size: $detail-1-size;
+      font-weight: $detail-1-weight;
+      line-height: $detail-1-line-height;
+      font-family: $font-family-base;
+    }
+
+    .drop-down__list {
+      border-radius: $radius-sm;
+    }
+
+    .drop-down__item {
+      height: 32px;
+      padding: 0 $space-12;
+      font-size: $detail-1-size;
+      font-weight: $detail-1-weight;
+      font-family: $font-family-base;
+    }
+  }
+
+  // ---------------------------------------------------------------------------
+  // State: open
+  // ---------------------------------------------------------------------------
+  &--open {
+    .drop-down__field {
+      border-color: $primary-950;
+    }
+  }
+
+  // ---------------------------------------------------------------------------
+  // State: error
+  // ---------------------------------------------------------------------------
+  &--error {
+    .drop-down__field {
+      border-color: $color-error;
+    }
+  }
+
+  // ---------------------------------------------------------------------------
+  // State: disabled
+  // ---------------------------------------------------------------------------
+  &--disabled {
+    .drop-down__field {
+      border-color: $gray-300;
+      background-color: $gray-100;
+      cursor: not-allowed;
+    }
+
+    .drop-down__text {
+      color: $gray-500;
+    }
+
+    .drop-down__icon {
+      color: $gray-400;
+    }
+  }
+}

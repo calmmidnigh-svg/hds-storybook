@@ -46,6 +46,7 @@ const Input = ({
   const resolvedPlaceholder = placeholder ?? DATE_PLACEHOLDER[type] ?? undefined;
   const htmlType = type === 'number' || type === 'date' ? 'text' : 'text';
   const inputMode = type === 'number' || type === 'date' ? 'numeric' : undefined;
+  const displayValue = type === 'date' ? formatDateValue(value) : value;
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     const raw = e.target.value;
@@ -91,7 +92,7 @@ const Input = ({
         className="input__field"
         type={htmlType}
         inputMode={inputMode}
-        value={value}
+        value={displayValue}
         onChange={handleChange}
         placeholder={resolvedPlaceholder}
         disabled={disabled}

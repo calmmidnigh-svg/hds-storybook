@@ -80,7 +80,7 @@ const ICON_CATEGORIES = {
     'format_ink_highlighter', 'ink_highlighter', 'colors', 'colorize',
   ],
   'File Type': [
-    'pdf', 'jpg', 'png', 'ppt',
+    'pdf', 'jpg', 'png', 'ppt', 'doc', 'hwp', 'xls', 'bmp',
   ],
 } as const;
 

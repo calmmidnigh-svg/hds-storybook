@@ -1,6 +1,7 @@
 import { type ChangeEvent, type InputHTMLAttributes, useRef } from 'react';
 import InputDateRange from './InputDateRange';
 import type { InputTypeType } from './types';
+import { formatDateValue } from './utils';
 
 const DATE_PLACEHOLDER: Partial<Record<InputTypeType, string>> = {
   date: 'YYYY-MM-DD',
@@ -43,10 +44,30 @@ const Input = ({
 }: InputPropsType) => {
   const inputRef = useRef<HTMLInputElement>(null);
   const resolvedPlaceholder = placeholder ?? DATE_PLACEHOLDER[type] ?? undefined;
-  const htmlType = type === 'date' ? 'text' : type;
+  const htmlType = type === 'number' || type === 'date' ? 'text' : 'text';
+  const inputMode = type === 'number' || type === 'date' ? 'numeric' : undefined;
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
-    onValueChange?.(e.target.value, e.target.value);
+    const raw = e.target.value;
+
+    if (type === 'number') {
+      const digits = raw.replace(/\D/g, '');
+
+      onValueChange?.(digits, digits);
+
+      return;
+    }
+
+    if (type === 'date') {
+      const formatted = formatDateValue(raw);
+      const rawDigits = formatted.replace(/-/g, '');
+
+      onValueChange?.(rawDigits, formatted);
+
+      return;
+    }
+
+    onValueChange?.(raw, raw);
   };
 
   const handleClearClick = () => {
@@ -69,6 +90,7 @@ const Input = ({
         ref={inputRef}
         className="input__field"
         type={htmlType}
+        inputMode={inputMode}
         value={value}
         onChange={handleChange}
         placeholder={resolvedPlaceholder}

@@ -1,5 +1,6 @@
 import type { ChangeEvent } from 'react';
 import Icon from '../icon';
+import { formatDateValue } from './utils';
 
 type InputDateRangePropsType = {
   startValue: string;
@@ -25,11 +26,17 @@ const InputDateRange = ({
   className,
 }: InputDateRangePropsType) => {
   const handleStartChange = (e: ChangeEvent<HTMLInputElement>) => {
-    onStartValueChange?.(e.target.value, e.target.value);
+    const formatted = formatDateValue(e.target.value);
+    const rawDigits = formatted.replace(/-/g, '');
+
+    onStartValueChange?.(rawDigits, formatted);
   };
 
   const handleEndChange = (e: ChangeEvent<HTMLInputElement>) => {
-    onEndValueChange?.(e.target.value, e.target.value);
+    const formatted = formatDateValue(e.target.value);
+    const rawDigits = formatted.replace(/-/g, '');
+
+    onEndValueChange?.(rawDigits, formatted);
   };
 
   const wrapperClassNames = [
@@ -46,6 +53,7 @@ const InputDateRange = ({
         <input
           className="input__field input__field--date-slot"
           type="text"
+          inputMode="numeric"
           value={startValue}
           onChange={handleStartChange}
           placeholder={startPlaceholder}
@@ -55,6 +63,7 @@ const InputDateRange = ({
         <input
           className="input__field input__field--date-slot"
           type="text"
+          inputMode="numeric"
           value={endValue}
           onChange={handleEndChange}
           placeholder={endPlaceholder}

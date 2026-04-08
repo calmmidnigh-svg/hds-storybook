@@ -1,8 +1,10 @@
 import { type ChangeEvent, type TextareaHTMLAttributes, useRef } from 'react';
+import Icon from '../icon';
 
 type TextAreaPropsType = Omit<TextareaHTMLAttributes<HTMLTextAreaElement>, 'onChange'> & {
   value: string;
   onValueChange?: (value: string) => void;
+  onSend?: () => void;
   placeholder?: string;
   disabled?: boolean;
   error?: boolean;
@@ -14,6 +16,7 @@ type TextAreaPropsType = Omit<TextareaHTMLAttributes<HTMLTextAreaElement>, 'onCh
 const TextArea = ({
   value,
   onValueChange,
+  onSend,
   placeholder,
   disabled = false,
   error = false,
@@ -30,12 +33,19 @@ const TextArea = ({
     onValueChange?.(e.target.value);
   };
 
+  const handleSendClick = () => {
+    onSend?.();
+  };
+
   const wrapperClassNames = [
     'text-area',
     error && 'text-area--error',
     disabled && 'text-area--disabled',
     className,
   ].filter(Boolean).join(' ');
+
+  const hasSendButton = onSend !== undefined;
+  const isSendDisabled = disabled || value.trim() === '';
 
   return (
     <div className={wrapperClassNames}>
@@ -52,11 +62,27 @@ const TextArea = ({
         name={name}
         {...rest}
       />
-      {maxLength !== undefined && (
+      {(hasSendButton || maxLength !== undefined) && (
         <div className="text-area__footer">
-          <span className="text-area__count">
-            {value.length}/{maxLength}
-          </span>
+          {maxLength !== undefined && (
+            <span className="text-area__count">
+              {value.length}/{maxLength}
+            </span>
+          )}
+          {hasSendButton && (
+            <button
+              type="button"
+              className={[
+                'text-area__send',
+                isSendDisabled && 'text-area__send--disabled',
+              ].filter(Boolean).join(' ')}
+              onClick={handleSendClick}
+              disabled={isSendDisabled}
+              aria-label="전송"
+            >
+              <Icon name="send" size={20} />
+            </button>
+          )}
         </div>
       )}
     </div>

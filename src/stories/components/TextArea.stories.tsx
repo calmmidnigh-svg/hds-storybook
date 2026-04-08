@@ -13,6 +13,7 @@ const meta: Meta<typeof TextArea> = {
     placeholder: { control: 'text' },
     maxLength: { control: 'number' },
     rows: { control: 'number' },
+    onSend: { control: false, action: 'sent' },
   },
   args: {
     disabled: false,
@@ -101,6 +102,75 @@ export const WithMaxLength: Story = {
             maxLength={200}
             error
             onValueChange={setErrorValue}
+          />
+        </div>
+      </div>
+    );
+  },
+};
+
+// ---------------------------------------------------------------------------
+// 전송 버튼 (Send Button)
+// ---------------------------------------------------------------------------
+export const WithSendButton: Story = {
+  render: () => {
+    const [value, setValue] = useState('');
+    const [sentMessages, setSentMessages] = useState<string[]>([]);
+
+    const handleSend = () => {
+      if (value.trim() === '') return;
+      setSentMessages((prev) => [...prev, value]);
+      setValue('');
+    };
+
+    return (
+      <div style={{ display: 'flex', flexDirection: 'column', gap: '16px', width: '560px' }}>
+        <div>
+          <p style={{ marginBottom: '6px', fontSize: '12px', color: '#888' }}>send button (빈값 = 비활성)</p>
+          <TextArea
+            value={value}
+            placeholder="메시지를 입력하세요"
+            onValueChange={setValue}
+            onSend={handleSend}
+          />
+        </div>
+        {sentMessages.length > 0 && (
+          <div style={{ display: 'flex', flexDirection: 'column', gap: '4px' }}>
+            <p style={{ fontSize: '12px', color: '#888', marginBottom: '4px' }}>전송된 메시지</p>
+            {sentMessages.map((message, index) => (
+              <div
+                key={index}
+                style={{
+                  padding: '8px 12px',
+                  background: '#f5f5f5',
+                  borderRadius: '8px',
+                  fontSize: '14px',
+                  color: '#333',
+                }}
+              >
+                {message}
+              </div>
+            ))}
+          </div>
+        )}
+        <div>
+          <p style={{ marginBottom: '6px', fontSize: '12px', color: '#888' }}>send button + maxLength</p>
+          <TextArea
+            value={value}
+            placeholder="메시지를 입력하세요"
+            maxLength={200}
+            onValueChange={setValue}
+            onSend={handleSend}
+          />
+        </div>
+        <div>
+          <p style={{ marginBottom: '6px', fontSize: '12px', color: '#888' }}>send button + disabled</p>
+          <TextArea
+            value=""
+            placeholder="비활성 상태"
+            disabled
+            onValueChange={() => {}}
+            onSend={() => {}}
           />
         </div>
       </div>

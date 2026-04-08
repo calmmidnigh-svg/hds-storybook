@@ -1,0 +1,231 @@
+@use '../../tokens/colors' as *;
+@use '../../tokens/spacing' as *;
+@use '../../tokens/typography' as *;
+@use '../../tokens/radius' as *;
+
+// =============================================================================
+// Combobox Component - HDS 1.1.2
+// Figma: combobox (state: default | filled | open | error | disabled)
+// 검색 입력 + 드롭다운 선택 조합 컴포넌트
+// =============================================================================
+
+.combobox {
+  position: relative;
+  display: inline-block;
+  width: 100%;
+  box-sizing: border-box;
+
+  // ---------------------------------------------------------------------------
+  // Field (입력 영역 래퍼)
+  // ---------------------------------------------------------------------------
+  &__field {
+    display: flex;
+    align-items: center;
+    gap: $space-8;
+    height: 44px;
+    padding: $space-12 $space-16;
+    border: 1px solid $gray-400;
+    border-radius: $radius-md;
+    background-color: $white;
+    box-sizing: border-box;
+    transition: border-color 0.15s ease;
+  }
+
+  // ---------------------------------------------------------------------------
+  // Search icon (좌측)
+  // ---------------------------------------------------------------------------
+  &__search-icon {
+    display: inline-flex;
+    align-items: center;
+    flex-shrink: 0;
+    color: $gray-500;
+  }
+
+  // ---------------------------------------------------------------------------
+  // Input
+  // ---------------------------------------------------------------------------
+  &__input {
+    flex: 1;
+    min-width: 0;
+    border: none;
+    outline: none;
+    background: transparent;
+    font-family: $font-family-base;
+    font-size: $body-2-size;
+    font-weight: $body-2-weight;
+    line-height: $body-2-line-height;
+    color: $gray-950;
+    letter-spacing: 0;
+    cursor: text;
+
+    &::placeholder {
+      color: $gray-500;
+    }
+
+    &:disabled {
+      cursor: not-allowed;
+      color: $gray-500;
+
+      &::placeholder {
+        color: $gray-400;
+      }
+    }
+  }
+
+  // ---------------------------------------------------------------------------
+  // Toggle button (우측 화살표)
+  // ---------------------------------------------------------------------------
+  &__toggle {
+    display: inline-flex;
+    align-items: center;
+    flex-shrink: 0;
+    border: none;
+    background: none;
+    padding: 0;
+    cursor: pointer;
+    color: $gray-600;
+
+    &:disabled {
+      color: $gray-400;
+      cursor: not-allowed;
+    }
+  }
+
+  // ---------------------------------------------------------------------------
+  // List (목록 컨테이너)
+  // ---------------------------------------------------------------------------
+  &__list {
+    position: absolute;
+    top: calc(100% + 4px);
+    left: 0;
+    width: 100%;
+    max-height: 200px;
+    overflow-y: auto;
+    border: 1px solid $gray-300;
+    border-radius: $radius-md;
+    background-color: $white;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, .08);
+    z-index: 100;
+    list-style: none;
+    margin: 0;
+    padding: $space-4 0;
+    box-sizing: border-box;
+  }
+
+  // ---------------------------------------------------------------------------
+  // Item (개별 옵션)
+  // ---------------------------------------------------------------------------
+  &__item {
+    display: flex;
+    align-items: center;
+    gap: $space-8;
+    height: 36px;
+    padding: 0 $space-16;
+    font-family: $font-family-base;
+    font-size: $body-2-size;
+    font-weight: $body-2-weight;
+    color: $gray-950;
+    letter-spacing: 0;
+    cursor: pointer;
+    transition: background-color 0.1s ease;
+
+    &:hover:not(.combobox__item--disabled) {
+      background-color: $gray-50;
+    }
+
+    &--selected {
+      background-color: $primary-50;
+      color: $primary-950;
+      font-weight: 600;
+    }
+
+    &--active:not(.combobox__item--selected) {
+      background-color: $gray-100;
+    }
+
+    &--disabled {
+      color: $gray-400;
+      cursor: not-allowed;
+    }
+  }
+
+  // ---------------------------------------------------------------------------
+  // Item check icon
+  // ---------------------------------------------------------------------------
+  &__item-check {
+    display: inline-flex;
+    align-items: center;
+    flex-shrink: 0;
+    color: $primary-950;
+    margin-left: auto;
+    order: 1;
+  }
+
+  // ---------------------------------------------------------------------------
+  // Empty state
+  // ---------------------------------------------------------------------------
+  &__empty {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 36px;
+    font-family: $font-family-base;
+    font-size: $body-2-size;
+    color: $gray-500;
+    letter-spacing: 0;
+  }
+
+  // ---------------------------------------------------------------------------
+  // State: open
+  // ---------------------------------------------------------------------------
+  &--open {
+    .combobox__field {
+      border-color: $primary-950;
+    }
+
+    .combobox__search-icon {
+      color: $primary-950;
+    }
+  }
+
+  // ---------------------------------------------------------------------------
+  // State: filled
+  // ---------------------------------------------------------------------------
+  &--filled {
+    .combobox__search-icon {
+      color: $gray-950;
+    }
+  }
+
+  // ---------------------------------------------------------------------------
+  // State: error
+  // ---------------------------------------------------------------------------
+  &--error {
+    .combobox__field {
+      border-color: $color-error;
+    }
+
+    .combobox__search-icon {
+      color: $color-error;
+    }
+
+    .combobox__input {
+      color: $gray-950;
+    }
+  }
+
+  // ---------------------------------------------------------------------------
+  // State: disabled
+  // ---------------------------------------------------------------------------
+  &--disabled {
+    .combobox__field {
+      border-color: $gray-300;
+      background-color: $gray-100;
+      cursor: not-allowed;
+    }
+
+    .combobox__search-icon {
+      color: $gray-400;
+    }
+  }
+}

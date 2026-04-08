@@ -39,6 +39,9 @@ const InputDateRange = ({
     onEndValueChange?.(rawDigits, formatted);
   };
 
+  const displayStartValue = formatDateValue(startValue);
+  const displayEndValue = formatDateValue(endValue);
+
   const wrapperClassNames = [
     'input',
     'input--date-range',
@@ -54,7 +57,7 @@ const InputDateRange = ({
           className="input__field input__field--date-slot"
           type="text"
           inputMode="numeric"
-          value={startValue}
+          value={displayStartValue}
           onChange={handleStartChange}
           placeholder={startPlaceholder}
           disabled={disabled}
@@ -64,7 +67,7 @@ const InputDateRange = ({
           className="input__field input__field--date-slot"
           type="text"
           inputMode="numeric"
-          value={endValue}
+          value={displayEndValue}
           onChange={handleEndChange}
           placeholder={endPlaceholder}
           disabled={disabled}

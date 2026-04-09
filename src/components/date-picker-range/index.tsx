@@ -1,17 +1,76 @@
+import { useEffect, useRef, useState } from 'react';
+import Calendar from '../date-picker/Calendar';
 import Icon from '../icon';
 import type { DatePickerRangePropsType } from './types';
 
 const DatePickerRange = ({
   startValue,
   endValue,
-  onOpen,
-  isOpen = false,
+  onChange,
   startPlaceholder = '시작일',
   endPlaceholder = '종료일',
   disabled = false,
   error = false,
   className,
 }: DatePickerRangePropsType) => {
+  const [isOpen, setIsOpen] = useState(false);
+  const [selectingEnd, setSelectingEnd] = useState(false);
+  const [viewDate, setViewDate] = useState<Date>(() =>
+    startValue ? new Date(startValue) : new Date(),
+  );
+  const containerRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    if (startValue) setViewDate(new Date(startValue));
+  }, [startValue]);
+
+  useEffect(() => {
+    const handleClickOutside = (e: MouseEvent) => {
+      if (containerRef.current && !containerRef.current.contains(e.target as Node)) {
+        setIsOpen(false);
+        setSelectingEnd(false);
+      }
+    };
+
+    document.addEventListener('mousedown', handleClickOutside);
+
+    return () => document.removeEventListener('mousedown', handleClickOutside);
+  }, []);
+
+  const handleFieldClick = () => {
+    if (!disabled) {
+      setIsOpen((prev) => !prev);
+      setSelectingEnd(false);
+    }
+  };
+
+  const handleDateClick = (dateStr: string) => {
+    if (!selectingEnd) {
+      onChange?.(dateStr, '');
+      setSelectingEnd(true);
+    } else {
+      const start = startValue ?? '';
+      const isBeforeStart = start && dateStr < start;
+
+      if (isBeforeStart) {
+        onChange?.(dateStr, start);
+      } else {
+        onChange?.(start, dateStr);
+      }
+
+      setIsOpen(false);
+      setSelectingEnd(false);
+    }
+  };
+
+  const handlePrevMonth = () => {
+    setViewDate((prev) => new Date(prev.getFullYear(), prev.getMonth() - 1, 1));
+  };
+
+  const handleNextMonth = () => {
+    setViewDate((prev) => new Date(prev.getFullYear(), prev.getMonth() + 1, 1));
+  };
+
   const hasValue = Boolean(startValue || endValue);
 
   const wrapperClassNames = [
@@ -23,16 +82,12 @@ const DatePickerRange = ({
     className,
   ].filter(Boolean).join(' ');
 
-  const handleClick = () => {
-    if (!disabled) onOpen?.();
-  };
-
   return (
-    <div className={wrapperClassNames}>
+    <div ref={containerRef} className={wrapperClassNames}>
       <button
         type="button"
         className="date-picker-range__field"
-        onClick={handleClick}
+        onClick={handleFieldClick}
         disabled={disabled}
         aria-haspopup="dialog"
         aria-expanded={isOpen}
@@ -51,6 +106,17 @@ const DatePickerRange = ({
           <Icon name="calendar_month" size={24} />
         </span>
       </button>
+
+      {isOpen && (
+        <Calendar
+          viewDate={viewDate}
+          selectedStart={startValue}
+          selectedEnd={endValue}
+          onDateClick={handleDateClick}
+          onPrevMonth={handlePrevMonth}
+          onNextMonth={handleNextMonth}
+        />
+      )}
     </div>
   );
 };

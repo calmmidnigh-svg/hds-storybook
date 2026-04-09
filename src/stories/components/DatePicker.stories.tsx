@@ -10,14 +10,12 @@ const meta: Meta<typeof DatePicker> = {
   argTypes: {
     disabled: { control: 'boolean' },
     error: { control: 'boolean' },
-    isOpen: { control: 'boolean' },
     placeholder: { control: 'text' },
     value: { control: 'text' },
   },
   args: {
     disabled: false,
     error: false,
-    isOpen: false,
     placeholder: 'yyyy-mm-dd',
   },
 };
@@ -30,21 +28,14 @@ type Story = StoryObj<typeof DatePicker>;
 // ---------------------------------------------------------------------------
 export const Default: Story = {
   render: (args) => {
-    const [isOpen, setIsOpen] = useState(false);
     const [value, setValue] = useState('');
 
     return (
-      <div style={{ width: '320px' }}>
+      <div style={{ width: '320px', paddingBottom: '400px' }}>
         <DatePicker
           {...args}
           value={value}
-          isOpen={isOpen}
-          onOpen={() => {
-            if (!args.disabled) {
-              setIsOpen((prev) => !prev);
-              if (!value) setValue('2025-07-16');
-            }
-          }}
+          onChange={setValue}
         />
         {value && (
           <p style={{ marginTop: '8px', fontSize: '12px', color: '#888' }}>
@@ -52,7 +43,7 @@ export const Default: Story = {
             <button
               type="button"
               style={{ marginLeft: '8px', fontSize: '11px', cursor: 'pointer' }}
-              onClick={() => { setValue(''); setIsOpen(false); }}
+              onClick={() => setValue('')}
             >
               초기화
             </button>
@@ -68,14 +59,10 @@ export const Default: Story = {
 // ---------------------------------------------------------------------------
 export const States: Story = {
   render: () => (
-    <div style={{ display: 'flex', flexDirection: 'column', gap: '16px', width: '320px' }}>
+    <div style={{ display: 'flex', flexDirection: 'column', gap: '16px', width: '320px', paddingBottom: '400px' }}>
       <div>
         <p style={{ marginBottom: '6px', fontSize: '12px', color: '#888' }}>default</p>
         <DatePicker placeholder="yyyy-mm-dd" />
-      </div>
-      <div>
-        <p style={{ marginBottom: '6px', fontSize: '12px', color: '#888' }}>open</p>
-        <DatePicker placeholder="yyyy-mm-dd" isOpen />
       </div>
       <div>
         <p style={{ marginBottom: '6px', fontSize: '12px', color: '#888' }}>filled</p>
@@ -98,9 +85,8 @@ export const States: Story = {
 // ---------------------------------------------------------------------------
 export const AllVariants: Story = {
   render: () => (
-    <div style={{ display: 'flex', flexDirection: 'column', gap: '8px', width: '320px', padding: '24px' }}>
+    <div style={{ display: 'flex', flexDirection: 'column', gap: '8px', width: '320px', padding: '24px', paddingBottom: '400px' }}>
       <DatePicker placeholder="yyyy-mm-dd" />
-      <DatePicker placeholder="yyyy-mm-dd" isOpen />
       <DatePicker value="2025-07-16" />
       <DatePicker value="2025-07-16" error />
       <DatePicker placeholder="yyyy-mm-dd" disabled />

@@ -1,9 +1,13 @@
 export type DatePickerPropsType = {
   value?: string;
-  onOpen?: () => void;
-  isOpen?: boolean;
+  onChange?: (value: string) => void;
   placeholder?: string;
   disabled?: boolean;
   error?: boolean;
   className?: string;
+};
+
+export type CalendarDayType = {
+  date: Date;
+  isCurrentMonth: boolean;
 };

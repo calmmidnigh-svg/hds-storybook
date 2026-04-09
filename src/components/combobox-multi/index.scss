@@ -141,6 +141,9 @@
     color: $primary-950;
     letter-spacing: 0;
     white-space: nowrap;
+    max-width: 120px;
+    overflow: hidden;
+    text-overflow: ellipsis;
   }
 
   &__badge-remove {
@@ -212,7 +215,7 @@
     }
 
     &--selected {
-      color: $gray-950;
+      color: $primary-950;
     }
 
     &--active:not(.combobox-multi__item--selected) {

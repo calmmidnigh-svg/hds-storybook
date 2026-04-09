@@ -163,9 +163,11 @@ const ComboboxMulti = ({
 
         {(!hasSelection || isOpen) && (
           <div className="combobox-multi__input-area">
-            <span className="combobox-multi__search-icon">
-              <Icon name="search" size={24} />
-            </span>
+            {!isOpen && (
+              <span className="combobox-multi__search-icon">
+                <Icon name="search" size={24} />
+              </span>
+            )}
             <input
               ref={inputRef}
               className="combobox-multi__input"

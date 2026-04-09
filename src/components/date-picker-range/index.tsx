@@ -1,7 +1,9 @@
-import { useEffect, useRef, useState } from 'react';
-import Calendar from '../date-picker/Calendar';
+import { useEffect, useRef } from 'react';
+import CalendarContent from '../calendar-content';
+import '../calendar-content/index.scss';
 import Icon from '../icon';
 import type { DatePickerRangePropsType } from './types';
+import { useState } from 'react';
 
 const DatePickerRange = ({
   startValue,
@@ -14,21 +16,12 @@ const DatePickerRange = ({
   className,
 }: DatePickerRangePropsType) => {
   const [isOpen, setIsOpen] = useState(false);
-  const [selectingEnd, setSelectingEnd] = useState(false);
-  const [viewDate, setViewDate] = useState<Date>(() =>
-    startValue ? new Date(startValue) : new Date(),
-  );
   const containerRef = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    if (startValue) setViewDate(new Date(startValue));
-  }, [startValue]);
 
   useEffect(() => {
     const handleClickOutside = (e: MouseEvent) => {
       if (containerRef.current && !containerRef.current.contains(e.target as Node)) {
         setIsOpen(false);
-        setSelectingEnd(false);
       }
     };
 
@@ -38,50 +31,12 @@ const DatePickerRange = ({
   }, []);
 
   const handleFieldClick = () => {
-    if (!disabled) {
-      setIsOpen((prev) => !prev);
-      setSelectingEnd(false);
-    }
+    if (!disabled) setIsOpen((prev) => !prev);
   };
 
-  const handleDateClick = (dateStr: string) => {
-    if (!selectingEnd) {
-      if (dateStr === startValue) {
-        onChange?.('', endValue ?? '');
-
-        return;
-      }
-
-      onChange?.(dateStr, '');
-      setSelectingEnd(true);
-    } else {
-      if (dateStr === endValue) {
-        onChange?.(startValue ?? '', '');
-        setSelectingEnd(false);
-
-        return;
-      }
-
-      const start = startValue ?? '';
-      const isBeforeStart = start && dateStr < start;
-
-      if (isBeforeStart) {
-        onChange?.(dateStr, start);
-      } else {
-        onChange?.(start, dateStr);
-      }
-
-      setIsOpen(false);
-      setSelectingEnd(false);
-    }
-  };
-
-  const handlePrevMonth = () => {
-    setViewDate((prev) => new Date(prev.getFullYear(), prev.getMonth() - 1, 1));
-  };
-
-  const handleNextMonth = () => {
-    setViewDate((prev) => new Date(prev.getFullYear(), prev.getMonth() + 1, 1));
+  const handleRangeChange = (start: string, end: string) => {
+    onChange?.(start, end);
+    if (start && end) setIsOpen(false);
   };
 
   const hasValue = Boolean(startValue || endValue);
@@ -121,13 +76,12 @@ const DatePickerRange = ({
       </button>
 
       {isOpen && (
-        <Calendar
-          viewDate={viewDate}
-          selectedStart={startValue}
-          selectedEnd={endValue}
-          onDateClick={handleDateClick}
-          onPrevMonth={handlePrevMonth}
-          onNextMonth={handleNextMonth}
+        <CalendarContent
+          mode="range"
+          startValue={startValue}
+          endValue={endValue}
+          onRangeChange={handleRangeChange}
+          className="date-picker-range__calendar"
         />
       )}
     </div>

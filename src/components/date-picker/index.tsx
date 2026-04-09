@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from 'react';
+import CalendarContent from '../calendar-content';
+import '../calendar-content/index.scss';
 import Icon from '../icon';
-import Calendar from './Calendar';
 import type { DatePickerPropsType } from './types';
 
 const DatePicker = ({
@@ -12,12 +13,7 @@ const DatePicker = ({
   className,
 }: DatePickerPropsType) => {
   const [isOpen, setIsOpen] = useState(false);
-  const [viewDate, setViewDate] = useState<Date>(() => (value ? new Date(value) : new Date()));
   const containerRef = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    if (value) setViewDate(new Date(value));
-  }, [value]);
 
   useEffect(() => {
     const handleClickOutside = (e: MouseEvent) => {
@@ -35,23 +31,9 @@ const DatePicker = ({
     if (!disabled) setIsOpen((prev) => !prev);
   };
 
-  const handleDateClick = (dateStr: string) => {
-    if (dateStr === value) {
-      onChange?.('');
-
-      return;
-    }
-
+  const handleChange = (dateStr: string) => {
     onChange?.(dateStr);
-    setIsOpen(false);
-  };
-
-  const handlePrevMonth = () => {
-    setViewDate((prev) => new Date(prev.getFullYear(), prev.getMonth() - 1, 1));
-  };
-
-  const handleNextMonth = () => {
-    setViewDate((prev) => new Date(prev.getFullYear(), prev.getMonth() + 1, 1));
+    if (dateStr) setIsOpen(false);
   };
 
   const hasValue = Boolean(value);
@@ -85,12 +67,11 @@ const DatePicker = ({
       </button>
 
       {isOpen && (
-        <Calendar
-          viewDate={viewDate}
-          selectedStart={value}
-          onDateClick={handleDateClick}
-          onPrevMonth={handlePrevMonth}
-          onNextMonth={handleNextMonth}
+        <CalendarContent
+          mode="default"
+          value={value}
+          onChange={handleChange}
+          className="date-picker__calendar"
         />
       )}
     </div>

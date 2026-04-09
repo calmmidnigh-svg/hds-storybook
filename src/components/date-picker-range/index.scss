@@ -85,6 +85,14 @@
     }
   }
 
+  // 드롭다운 포지셔닝
+  &__calendar {
+    position: absolute;
+    top: calc(100% + 4px);
+    left: 0;
+    z-index: 100;
+  }
+
   &--disabled {
     .date-picker-range__field {
       background-color: $gray-100;

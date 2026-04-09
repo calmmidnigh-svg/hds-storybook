@@ -1,0 +1,148 @@
+@use '../../tokens/colors' as *;
+@use '../../tokens/spacing' as *;
+@use '../../tokens/typography' as *;
+@use '../../tokens/radius' as *;
+
+// =============================================================================
+// CalendarContent Component - HDS 1.1.2
+// Figma: calendar_content (state: default | daypicker | range)
+// 독립형 달력 컴포넌트 — date_picker / date_picker_range에서도 공유
+// width: 320, padding: 20, border: $gray-400, border-radius: 8px
+// =============================================================================
+
+.calendar-content {
+  display: inline-flex;
+  flex-direction: column;
+  gap: $space-8;
+  width: 320px;
+  padding: 20px;
+  border: 1px solid $gray-400;
+  border-radius: $radius-md;
+  background-color: $white;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, .08);
+  box-sizing: border-box;
+
+  // ---------------------------------------------------------------------------
+  // Header (월 표시 + 이전/다음 버튼)
+  // ---------------------------------------------------------------------------
+  &__header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 28px;
+  }
+
+  &__month {
+    font-family: $font-family-base;
+    font-size: $body-2-size;
+    font-weight: $body-2-weight;
+    color: $gray-900;
+    letter-spacing: 0;
+  }
+
+  &__nav {
+    display: flex;
+    gap: $space-8;
+  }
+
+  &__nav-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 20px;
+    height: 20px;
+    border: none;
+    background: none;
+    padding: 0;
+    cursor: pointer;
+    color: $gray-900;
+
+    &:hover {
+      color: $primary-950;
+    }
+  }
+
+  // ---------------------------------------------------------------------------
+  // Day name row (월화수목금토일)
+  // ---------------------------------------------------------------------------
+  &__day-names {
+    display: grid;
+    grid-template-columns: repeat(7, 40px);
+  }
+
+  &__day-name {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    font-family: $font-family-base;
+    font-size: $detail-1-size;
+    font-weight: $body-2-weight;
+    color: $gray-500;
+    letter-spacing: 0;
+  }
+
+  // ---------------------------------------------------------------------------
+  // Date grid
+  // ---------------------------------------------------------------------------
+  &__grid {
+    display: grid;
+    grid-template-columns: repeat(7, 40px);
+    row-gap: $space-8;
+  }
+
+  &__cell {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    border: none;
+    background: none;
+    border-radius: $radius-md;
+    font-family: $font-family-base;
+    font-size: $detail-1-size;
+    font-weight: $body-2-weight;
+    color: $gray-900;
+    letter-spacing: 0;
+    cursor: pointer;
+    transition: background-color 0.1s ease, color 0.1s ease;
+
+    &:hover:not(&--selected):not(&--other-month):not(&--in-range) {
+      background-color: $gray-100;
+    }
+
+    &--other-month {
+      color: $gray-300;
+      cursor: default;
+      pointer-events: none;
+    }
+
+    &--today {
+      font-weight: 700;
+      color: $primary-950;
+    }
+
+    &--selected {
+      background-color: $primary-950;
+      color: $white;
+      border-radius: $radius-md;
+    }
+
+    &--in-range {
+      background-color: $primary-100;
+      color: $gray-900;
+      border-radius: 0;
+    }
+  }
+
+  // ---------------------------------------------------------------------------
+  // Mode: range — 시작/종료 셀 모서리 처리
+  // ---------------------------------------------------------------------------
+  &--range {
+    .calendar-content__cell--selected {
+      border-radius: $radius-md;
+    }
+  }
+}

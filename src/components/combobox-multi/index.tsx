@@ -129,6 +129,7 @@ const ComboboxMulti = ({
   const wrapperClassNames = [
     'combobox-multi',
     isOpen && 'combobox-multi--open',
+    hasSelection && !isOpen && 'combobox-multi--filled',
     error && 'combobox-multi--error',
     disabled && 'combobox-multi--disabled',
     className,
@@ -136,31 +137,19 @@ const ComboboxMulti = ({
 
   return (
     <div ref={containerRef} className={wrapperClassNames}>
-      <div className="combobox-multi__field" onClick={() => inputRef.current?.focus()}>
+      <div className="combobox-multi__field" onClick={() => !isOpen && inputRef.current?.focus()}>
+        {/* Filled(닫힘): X 없는 배지만 표시, 고정 높이 */}
         {hasSelection && !isOpen && (
           <div className="combobox-multi__badges">
             {selectedOptions.map((option) => (
               <span key={option.value} className="combobox-multi__badge">
                 <span className="combobox-multi__badge-text">{option.label}</span>
-                {!disabled && (
-                  <button
-                    type="button"
-                    className="combobox-multi__badge-remove"
-                    onClick={(e) => {
-                      e.stopPropagation();
-                      handleRemoveBadge(option.value);
-                    }}
-                    tabIndex={-1}
-                    aria-label={`${option.label} 제거`}
-                  >
-                    <Icon name="close_small" size={16} />
-                  </button>
-                )}
               </span>
             ))}
           </div>
         )}
 
+        {/* Default / Open: 검색 아이콘(default만) + 입력 */}
         {(!hasSelection || isOpen) && (
           <div className="combobox-multi__input-area">
             {!isOpen && (
@@ -201,6 +190,7 @@ const ComboboxMulti = ({
 
       {isOpen && (
         <div className="combobox-multi__list-container">
+          {/* 옵션 리스트 — 50% 고정 */}
           <ul className="combobox-multi__list" role="listbox" aria-multiselectable="true">
             {filteredOptions.length > 0 ? (
               filteredOptions.map((option, index) => {
@@ -231,27 +221,27 @@ const ComboboxMulti = ({
             )}
           </ul>
 
-          {selectedOptions.length > 0 && (
-            <>
-              <div className="combobox-multi__divider" />
-              <div className="combobox-multi__selected-area">
-                {selectedOptions.map((option) => (
-                  <span key={option.value} className="combobox-multi__badge">
-                    <span className="combobox-multi__badge-text">{option.label}</span>
-                    <button
-                      type="button"
-                      className="combobox-multi__badge-remove"
-                      onClick={() => handleRemoveBadge(option.value)}
-                      tabIndex={-1}
-                      aria-label={`${option.label} 제거`}
-                    >
-                      <Icon name="close_small" size={16} />
-                    </button>
-                  </span>
-                ))}
-              </div>
-            </>
-          )}
+          {/* 구분선 — 항상 표시 */}
+          <div className="combobox-multi__divider" />
+
+          {/* 배지 영역 — 항상 표시, 50% 고정, X 있음 */}
+          <div className="combobox-multi__selected-area">
+            {selectedOptions.map((option) => (
+              <span key={option.value} className="combobox-multi__badge">
+                <span className="combobox-multi__badge-text">{option.label}</span>
+                <button
+                  type="button"
+                  className="combobox-multi__badge-remove"
+                  onMouseDown={(e) => e.preventDefault()}
+                  onClick={() => handleRemoveBadge(option.value)}
+                  tabIndex={-1}
+                  aria-label={`${option.label} 제거`}
+                >
+                  <Icon name="close_small" size={16} />
+                </button>
+              </span>
+            ))}
+          </div>
         </div>
       )}
     </div>

@@ -46,9 +46,22 @@ const DatePickerRange = ({
 
   const handleDateClick = (dateStr: string) => {
     if (!selectingEnd) {
+      if (dateStr === startValue) {
+        onChange?.('', endValue ?? '');
+
+        return;
+      }
+
       onChange?.(dateStr, '');
       setSelectingEnd(true);
     } else {
+      if (dateStr === endValue) {
+        onChange?.(startValue ?? '', '');
+        setSelectingEnd(false);
+
+        return;
+      }
+
       const start = startValue ?? '';
       const isBeforeStart = start && dateStr < start;
 

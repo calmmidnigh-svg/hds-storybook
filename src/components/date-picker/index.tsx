@@ -36,6 +36,12 @@ const DatePicker = ({
   };
 
   const handleDateClick = (dateStr: string) => {
+    if (dateStr === value) {
+      onChange?.('');
+
+      return;
+    }
+
     onChange?.(dateStr);
     setIsOpen(false);
   };

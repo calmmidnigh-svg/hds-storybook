@@ -17,6 +17,12 @@ const isSameDay = (a: Date, b: Date): boolean =>
   a.getMonth() === b.getMonth() &&
   a.getDate() === b.getDate();
 
+const parseLocalDate = (dateStr: string): Date => {
+  const [y, m, d] = dateStr.split('-').map(Number);
+
+  return new Date(y, m - 1, d);
+};
+
 const getCalendarDays = (viewDate: Date): CalendarDayType[] => {
   const year = viewDate.getFullYear();
   const month = viewDate.getMonth();
@@ -66,8 +72,8 @@ const Calendar = ({
 
   const monthLabel = `${viewDate.getFullYear()}. ${String(viewDate.getMonth() + 1).padStart(2, '0')}`;
 
-  const startDate = selectedStart ? new Date(selectedStart) : null;
-  const endDate = selectedEnd ? new Date(selectedEnd) : null;
+  const startDate = selectedStart ? parseLocalDate(selectedStart) : null;
+  const endDate = selectedEnd ? parseLocalDate(selectedEnd) : null;
 
   const isSelected = (date: Date) => {
     if (startDate && isSameDay(date, startDate)) return true;

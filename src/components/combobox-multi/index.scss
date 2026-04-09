@@ -196,7 +196,6 @@
   &__item {
     display: flex;
     align-items: center;
-    gap: $space-8;
     height: 24px;
     font-family: $font-family-base;
     font-size: $body-2-size;
@@ -221,17 +220,6 @@
     &--disabled {
       color: $gray-400;
       cursor: not-allowed;
-    }
-  }
-
-  &__item-check {
-    display: inline-flex;
-    align-items: center;
-    flex-shrink: 0;
-    color: $gray-400;
-
-    .combobox-multi__item--selected & {
-      color: $primary-950;
     }
   }
 

@@ -220,9 +220,6 @@ const ComboboxMulti = ({
                       if (!option.disabled) handleToggleOption(option.value);
                     }}
                   >
-                    <span className="combobox-multi__item-check">
-                      <Icon name={isSelected ? 'check_box' : 'check_box_outline_blank'} size={20} />
-                    </span>
                     {option.label}
                   </li>
                 );

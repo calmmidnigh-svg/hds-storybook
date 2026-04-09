@@ -1,0 +1,182 @@
+@use '../../tokens/colors' as *;
+@use '../../tokens/spacing' as *;
+@use '../../tokens/typography' as *;
+@use '../../tokens/radius' as *;
+
+// =============================================================================
+// CalendarDate Component - HDS 1.1.2
+// Figma: calendar_date (state: disabled | default | start | middle | end)
+// 이벤트 배지를 포함한 날짜 셀 — 140×140px
+// =============================================================================
+
+.calendar-date {
+  display: flex;
+  flex-direction: column;
+  width: 140px;
+  height: 140px;
+  box-sizing: border-box;
+  border: 1px solid $gray-200;
+
+  // ---------------------------------------------------------------------------
+  // Day circle area (상단 40px)
+  // ---------------------------------------------------------------------------
+  &__day-wrap {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 40px;
+    flex-shrink: 0;
+  }
+
+  &__day {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    font-family: $font-family-base;
+    font-size: $detail-1-size;
+    font-weight: $detail-1-weight;
+    color: $gray-900;
+    letter-spacing: 0;
+
+    &--today {
+      font-weight: 700;
+      color: $primary-950;
+    }
+
+    &--selected {
+      background-color: $primary-950;
+      color: $white;
+    }
+  }
+
+  // ---------------------------------------------------------------------------
+  // Badge container (하단 88px)
+  // ---------------------------------------------------------------------------
+  &__badges {
+    display: flex;
+    flex-direction: column;
+    gap: $space-4;
+    flex: 1;
+    padding: $space-4 $space-12;
+    overflow: hidden;
+  }
+
+  &__badge {
+    display: block;
+    width: 116px;
+    height: 20px;
+    padding: 0 $space-4;
+    border-radius: $radius-sm;
+    font-family: $font-family-base;
+    font-size: $detail-2-size;
+    font-weight: $detail-2-weight;
+    line-height: 20px;
+    letter-spacing: 0;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    box-sizing: border-box;
+
+    // badge_text_md (middle / end) — no border-radius
+    &--text {
+      border-radius: 0;
+    }
+
+    // Disabled 배지
+    &--disabled {
+      background-color: $gray-300 !important;
+      color: $white !important;
+    }
+
+    // Extended Palette 배지 색상
+    &--blue       { background-color: $blue-100;       color: $blue-600; }
+    &--green      { background-color: $green-100;      color: $green-600; }
+    &--indigo     { background-color: $indigo-100;     color: $indigo-600; }
+    &--lightgreen { background-color: $lightgreen-100; color: $lightgreen-600; }
+    &--orange     { background-color: $orange-100;     color: $orange-600; }
+    &--pink       { background-color: $pink-100;       color: $pink-600; }
+    &--purple     { background-color: $purple-100;     color: $purple-600; }
+    &--red        { background-color: $red-100;        color: $red-600; }
+    &--teal       { background-color: $teal-100;       color: $teal-600; }
+    &--yellow     { background-color: $yellow-100;     color: $yellow-600; }
+  }
+
+  &__overflow {
+    font-family: $font-family-base;
+    font-size: $detail-2-size;
+    font-weight: $detail-2-weight;
+    color: $gray-600;
+    letter-spacing: 0;
+    line-height: 20px;
+    padding: 0 $space-4;
+  }
+
+  // ---------------------------------------------------------------------------
+  // State: disabled
+  // ---------------------------------------------------------------------------
+  &--disabled {
+    background-color: $gray-100;
+
+    .calendar-date__day {
+      color: $gray-400;
+    }
+  }
+
+  // ---------------------------------------------------------------------------
+  // State: start — 날짜 원 파란색, 배지 128px left-aligned (left radius only)
+  // ---------------------------------------------------------------------------
+  &--start {
+    .calendar-date__badges {
+      padding: $space-4 0 $space-4 $space-12;
+    }
+
+    .calendar-date__badge {
+      width: 128px;
+      border-radius: $radius-sm $radius-sm $radius-sm $radius-sm;
+
+      // start 에서만 오른쪽 radius 0 (range 연속)
+      border-top-right-radius: 0;
+      border-bottom-right-radius: 0;
+    }
+  }
+
+  // ---------------------------------------------------------------------------
+  // State: middle — 전체 배경 $primary-100, 배지 140px full-width, no radius
+  // ---------------------------------------------------------------------------
+  &--middle {
+    background-color: $primary-100;
+
+    .calendar-date__badges {
+      padding: $space-4 0;
+    }
+
+    .calendar-date__badge {
+      width: 140px;
+    }
+  }
+
+  // ---------------------------------------------------------------------------
+  // State: end — 날짜 원 파란색, 배지 128px right-aligned (right radius only)
+  // ---------------------------------------------------------------------------
+  &--end {
+    .calendar-date__badges {
+      padding: $space-4 $space-12 $space-4 0;
+    }
+
+    .calendar-date__badge {
+      width: 128px;
+      align-self: flex-end;
+      border-radius: 0;
+
+      // end 에서만 오른쪽 radius 적용
+      &:not(&--text) {
+        border-top-right-radius: $radius-sm;
+        border-bottom-right-radius: $radius-sm;
+      }
+    }
+  }
+}
